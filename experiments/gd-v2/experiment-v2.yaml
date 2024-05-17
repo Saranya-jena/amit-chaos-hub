@@ -1,0 +1,58 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: KubernetesChaosExperiment
+metadata:
+  creationTimestamp: null
+  name: gd-v2
+  namespace: hce
+spec:
+  cleanupPolicy: ""
+  experimentId: ""
+  experimentRunId: ""
+  serviceAccountName: litmus
+  steps:
+  - - name: pod-delete-98u
+      status: ""
+  tasks:
+  - definition:
+      chaos:
+        annotations: null
+        args: null
+        cleanupPolicy: ""
+        command: null
+        components:
+          resources: {}
+        defaultHealthCheck: false
+        env:
+        - name: TOTAL_CHAOS_DURATION
+          value: "30"
+        - name: CHAOS_INTERVAL
+          value: "10"
+        - name: FORCE
+          value: "false"
+        - name: RAMP_TIME
+        - name: POD_AFFECTED_PERCENTAGE
+        - name: TARGET_PODS
+        - name: NODE_LABEL
+        - name: SEQUENCE
+          value: parallel
+        experiment: pod-delete
+        image: docker.io/harness/chaos-ddcr-faults:main-latest
+        imagePullPolicy: Always
+        labels: null
+        probes: null
+      targets:
+        appinfo:
+          appkind: ""
+          applabel: ""
+          appns: ""
+        selectors:
+          pods: []
+          workloads:
+          - kind: deployment
+            labels: ""
+            names: userservice
+            namespace: bofa
+    name: pod-delete-98u
+    probeRef:
+    - mode: Continuous
+      name: http-probe
