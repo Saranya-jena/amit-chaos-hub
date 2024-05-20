@@ -1,0 +1,31 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  annotations:
+    categories: ""
+    chartDescription: ""
+    createdAt: ""
+    repository: ""
+    support: ""
+    vendor: ""
+  name: dczs-test-push-amit
+packageInfo:
+  experiments: null
+  packageName: ""
+spec:
+  categoryDescription: ""
+  displayName: dczs-test-push-amit
+  experiments: null
+  faults:
+  - description: ""
+    displayName: ""
+    name: pod-delete-qgr2u
+    plan: null
+    supportedVersion: null
+  keywords:
+  - v2
+  - experiment
+  plan: null
+  provider:
+    name: ""
+  scenarios: null
