@@ -1,0 +1,53 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: KubernetesChaosExperiment
+metadata:
+  creationTimestamp: null
+  name: shippingservice-pod-delete-ja7mp
+  namespace: harness-delegate-ng
+spec:
+  cleanupPolicy: delete
+  experimentId: ""
+  experimentRunId: ""
+  serviceAccountName: litmus
+  steps:
+  - - name: pod-delete-gv4kn
+      status: ""
+  tasks:
+  - definition:
+      chaos:
+        annotations: null
+        args: null
+        cleanupPolicy: ""
+        command: null
+        components:
+          resources: {}
+        defaultHealthCheck: false
+        env:
+        - name: TOTAL_CHAOS_DURATION
+          value: "30"
+        - name: CHAOS_INTERVAL
+          value: "10"
+        - name: FORCE
+          value: "false"
+        - name: SEQUENCE
+          value: parallel
+        experiment: pod-delete
+        image: docker.io/harness/chaos-ddcr-faults:1.41.0
+        imagePullPolicy: Always
+        labels: null
+        probes: null
+      targets:
+        appinfo: null
+        selectors:
+          pods: null
+          workloads:
+          - kind: deployment
+            labels: ""
+            names: shippingservice
+            namespace: boutique
+    name: pod-delete-gv4kn
+    probeRef:
+    - mode: Edge
+      probeID: default-harness-k8s-system-cmd-probe
+    - mode: OnChaos
+      probeID: sling-dev-test

@@ -1,0 +1,30 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  annotations:
+    categories: ""
+    chartDescription: ""
+    createdAt: ""
+    repository: ""
+    support: ""
+    vendor: ""
+  name: shippingservice-pod-delete-ja7mp
+packageInfo:
+  experiments: null
+  packageName: ""
+spec:
+  categoryDescription: injects pod-delete fault on application kind Deployment, name
+    shippingservice in boutique namespace
+  displayName: shippingservice-pod-delete-ja7mp
+  experiments: null
+  faults:
+  - description: ""
+    displayName: ""
+    name: pod-delete-gv4kn
+    plan: null
+    supportedVersion: null
+  keywords: []
+  plan: null
+  provider:
+    name: ""
+  scenarios: null
