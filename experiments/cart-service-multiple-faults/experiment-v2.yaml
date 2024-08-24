@@ -1,0 +1,170 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: KubernetesChaosExperiment
+metadata:
+  creationTimestamp: null
+  name: cart-service-multiple-faults
+  namespace: harness-delegate-ng
+spec:
+  cleanupPolicy: delete
+  experimentId: ""
+  experimentRunId: ""
+  serviceAccountName: litmus
+  steps:
+  - - name: pod-delete-2auz8
+      status: ""
+  - - name: pod-cpu-hog-a8v
+      status: ""
+    - name: pod-network-loss-ovx
+      status: ""
+  tasks:
+  - definition:
+      chaos:
+        annotations: null
+        args: null
+        cleanupPolicy: ""
+        command: null
+        components:
+          resources: {}
+        defaultHealthCheck: false
+        env:
+        - name: TOTAL_CHAOS_DURATION
+          value: "30"
+        - name: CHAOS_INTERVAL
+          value: "10"
+        - name: FORCE
+          value: "false"
+        - name: SEQUENCE
+          value: parallel
+        experiment: pod-delete
+        image: docker.io/harness/chaos-ddcr-faults:1.41.0
+        imagePullPolicy: Always
+        labels: null
+        probes: null
+      targets:
+        appinfo: null
+        selectors:
+          pods: null
+          workloads:
+          - kind: deployment
+            labels: ""
+            names: frontend
+            namespace: boutique
+    name: pod-delete-2auz8
+    probeRef:
+    - mode: Edge
+      probeID: default-harness-k8s-system-cmd-probe
+    - mode: Continuous
+      probeID: verify-static-resources
+    - mode: OnChaos
+      probeID: add-item-into-cart
+  - definition:
+      chaos:
+        annotations: null
+        args: null
+        cleanupPolicy: ""
+        command: null
+        components:
+          resources: {}
+        defaultHealthCheck: false
+        env:
+        - name: TOTAL_CHAOS_DURATION
+          value: "60"
+        - name: CPU_CORES
+          value: "1"
+        - name: CPU_LOAD
+          value: "100"
+        - name: POD_AFFECTED_PERCENTAGE
+        - name: CONTAINER_RUNTIME
+          value: containerd
+        - name: SOCKET_PATH
+          value: /run/containerd/containerd.sock
+        - name: LIB_IMAGE
+          value: docker.io/harness/chaos-ddcr-faults:1.41.0
+        - name: RAMP_TIME
+        - name: TARGET_CONTAINER
+        - name: TARGET_PODS
+        - name: NODE_LABEL
+        - name: SEQUENCE
+          value: parallel
+        experiment: pod-cpu-hog
+        image: docker.io/harness/chaos-ddcr-faults:1.41.0
+        imagePullPolicy: Always
+        labels: null
+        probes: null
+      targets:
+        appinfo:
+          appkind: ""
+          applabel: ""
+          appns: ""
+        selectors:
+          pods: []
+          workloads:
+          - kind: deployment
+            labels: ""
+            names: cartservice
+            namespace: boutique
+    name: pod-cpu-hog-a8v
+    probeRef:
+    - mode: Continuous
+      probeID: cart-service-availability-check
+    - mode: Edge
+      probeID: verify-static-resources
+    - mode: OnChaos
+      probeID: boutique-website-latency-check
+  - definition:
+      chaos:
+        annotations: null
+        args: null
+        cleanupPolicy: ""
+        command: null
+        components:
+          resources: {}
+        defaultHealthCheck: false
+        env:
+        - name: TOTAL_CHAOS_DURATION
+          value: "60"
+        - name: NETWORK_PACKET_LOSS_PERCENTAGE
+          value: "100"
+        - name: CONTAINER_RUNTIME
+          value: containerd
+        - name: SOCKET_PATH
+          value: /run/containerd/containerd.sock
+        - name: LIB_IMAGE
+          value: docker.io/harness/chaos-ddcr-faults:1.41.0
+        - name: POD_AFFECTED_PERCENTAGE
+        - name: NETWORK_INTERFACE
+          value: eth0
+        - name: RAMP_TIME
+        - name: TARGET_PODS
+        - name: NODE_LABEL
+        - name: DESTINATION_IPS
+        - name: DESTINATION_HOSTS
+        - name: SOURCE_PORTS
+        - name: DESTINATION_PORTS
+        - name: SEQUENCE
+          value: parallel
+        experiment: pod-network-loss
+        image: docker.io/harness/chaos-ddcr-faults:1.41.0
+        imagePullPolicy: Always
+        labels: null
+        probes: null
+      targets:
+        appinfo:
+          appkind: ""
+          applabel: ""
+          appns: ""
+        selectors:
+          pods: []
+          workloads:
+          - kind: deployment
+            labels: ""
+            names: paymentservice
+            namespace: boutique
+    name: pod-network-loss-ovx
+    probeRef:
+    - mode: Continuous
+      probeID: verify-static-resources
+    - mode: OnChaos
+      probeID: add-item-into-cart
+    - mode: Edge
+      probeID: default-harness-k8s-system-cmd-probe

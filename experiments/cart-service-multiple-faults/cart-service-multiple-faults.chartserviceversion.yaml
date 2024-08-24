@@ -1,0 +1,40 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  annotations:
+    categories: ""
+    chartDescription: ""
+    createdAt: ""
+    repository: ""
+    support: ""
+    vendor: ""
+  name: cart-service-multiple-faults
+packageInfo:
+  experiments: null
+  packageName: ""
+spec:
+  categoryDescription: injects pod-delete fault on application kind Deployment, name
+    cartservice in boutique namespace
+  displayName: cart-service-multiple-faults
+  experiments: null
+  faults:
+  - description: ""
+    displayName: ""
+    name: pod-delete-2auz8
+    plan: null
+    supportedVersion: null
+  - description: ""
+    displayName: ""
+    name: pod-cpu-hog-a8v
+    plan: null
+    supportedVersion: null
+  - description: ""
+    displayName: ""
+    name: pod-network-loss-ovx
+    plan: null
+    supportedVersion: null
+  keywords: []
+  plan: null
+  provider:
+    name: ""
+  scenarios: null
