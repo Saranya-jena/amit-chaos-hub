@@ -1,0 +1,30 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  annotations:
+    categories: ""
+    chartDescription: ""
+    createdAt: ""
+    repository: ""
+    support: ""
+    vendor: ""
+  name: test-cli-hub
+packageInfo:
+  experiments: null
+  packageName: ""
+spec:
+  categoryDescription: ""
+  displayName: test-cli-hub
+  experiments: null
+  faults:
+  - chaosType: ""
+    description: ""
+    displayName: ""
+    name: alb-az-down-9sx
+    plan: null
+    supportedVersion: null
+  keywords: []
+  plan: null
+  provider:
+    name: ""
+  scenarios: null
